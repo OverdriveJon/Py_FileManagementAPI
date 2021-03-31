@@ -34,3 +34,5 @@ candidate_writer = csv.DictWriter(candidate_file, fieldnames=_filelist_header, d
 
 candidate_writer.writeheader()
 
+# As string estao sendo escritas de maneira muito esquista no documento
+# pelos menos elas estao sendo escritas LOL
