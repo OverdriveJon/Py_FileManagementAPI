@@ -4,8 +4,8 @@ import os.path
 
 # Função principal que basicamente faz o script rodar
 
-def addheadertofile():
-    _filelist_row = []
+def writetocsvfile():
+    _filelist_line = []
     _filelist_header = []
     _filename = 'FM_API.csv'
 
@@ -29,24 +29,23 @@ def addheadertofile():
 
     file_writer.writeheader()
 
-    def addrows():
+    def addrows(c):
         for y in range(len(_filelist_header)):
             _row_name = str(
-                input('Digite a coluna numero ' + str(y + 1) + ' para a coluna de nome ' + _filelist_header[y] + '\n'))
-            _filelist_row.append(_row_name)
-
-    addrows()
+                input('Digite a linha numero ' + str(c+1) + ' para a coluna de nome ' + _filelist_header[y] + '\n'))
+            _filelist_line.append(_row_name)
 
     def writetofile():
-        numberofrows = int(input('Quantas colunas deseja criar ?\n'))
-        for c in range(numberofrows):
+        numberoflines = int(input('Quantas linhas deseja criar ?\n'))
+        for c in range(numberoflines):
+            print('--------------------')
+            addrows(c)
             _filedic = {}
             for m in range(len(_filelist_header)):
-                _filedic[_filelist_header[m]] = _filelist_row[m]
+                _filedic[_filelist_header[m]] = _filelist_line[m]
             file_writer.writerow(_filedic)
-    writetofile()
-    _file.close()
+            _filelist_line.clear()
 
-# As string estao sendo escritas de maneira muito esquista no documento
-# pelos menos elas estao sendo escritas LOL
-# NAO MAIS XD
+    writetofile()
+
+    _file.close()
